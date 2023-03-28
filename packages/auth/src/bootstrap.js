@@ -9,7 +9,7 @@ import App from './App';
 
 const mount = (
   el,
-  { onNavigate, defaultHistory, initialPath } = {}
+  { onNavigate, defaultHistory, initialPath, onSignIn } = {}
 ) => {
   const history =
     defaultHistory ??
@@ -21,7 +21,10 @@ const mount = (
     history.listen(onNavigate);
   }
 
-  ReactDOM.render(<App history={history} />, el);
+  ReactDOM.render(
+    <App history={history} onSignIn={onSignIn} />,
+    el
+  );
 
   return {
     onParentNavigate({ pathname: nextPathname }) {
